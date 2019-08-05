@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="table-wrapper">
+        <div class="table-title"  style= "margin-top: 10px">
+            <div class="row">
+                <div class="col-sm-8"><h2>{{issueDetailTitle}}</h2></div>
+                <div class="col-sm-4">
+                    <button [routerLink]="['./addissue']" type="button" class="btn btn-info add-new">Add New</button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>Severity</th>
+                    <th>Status</th>
+                    <th>Created Date</th>
+                    <th>Resolved Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody *ngIf = "issues && issues.length">           
+                <tr *ngFor = "let issue of issues">
+                    <td>{{issue.issueId}}</td>
+                    <td>{{issue.description}}</td>
+                    <td>
+                            <select id="severityId" name="severityType" [(ngModel)]="issue.severity">
+                                    <option *ngFor="let stypes of severityTypes" [value]="stypes.id">{{stypes.name}}</option>
+                            </select>
+                    </td>
+                    <td>
+                            <select id="statusId" name="statusType" [(ngModel)]="issue.status">
+                                    <option *ngFor="let status of issueStatus" [value]="status.id">{{status.name}}</option>
+                            </select>
+                    </td>
+                    <td>
+                            <input [(ngModel)]='issue.creationDate' type="date" name="createDate">
+                    </td>
+                    <td>
+                            <input [(ngModel)]='issue.resolvedDate' type="date" name="resolvedDate">
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-info add-new" style= "margin-right: 5px">Save</button>
+                        <button type="button" class="btn btn-info add-new" style= "margin-right: 5px">Edit</button>
+                        <button type="button" class="btn btn-info add-new" style= "margin-right: 5px">Delete</button>
+                    </td>
+                </tr>  
+            </tbody>
+        </table>
+    </div>
+</div>   
