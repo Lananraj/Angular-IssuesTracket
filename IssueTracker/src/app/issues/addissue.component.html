@@ -1,1 +1,38 @@
-<h1>add component displayes</h1>
+<form>
+        <div class="form-row">
+    <div class="form-group col-md-12">
+        <label for="exampleFormControlTextarea1">Issue Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+                    <label for="inputState">Severity Type</label>
+                    <select id="inputState" class="form-control">
+                            <option *ngFor="let stypes of severityTypes" [value]="stypes.id">{{stypes.name}}</option>
+                    </select>
+        </div>
+    </div>
+    <div class="form-row">
+            <div class="form-group col-md-12">
+                        <label for="inputState">Status</label>
+                        <select id="inputState" class="form-control">
+                            <option *ngFor="let status of issueStatus" [value]="status.id">{{status.name}}</option>
+                        </select>
+            </div>
+        </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="creationDate">Creation Date</label>
+            <input type="date" id="creationDate" class="form-control datepicker">
+        </div>
+    </div>
+    <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="resolvedDate">Resolved Date</label>
+                <input type="date" id="resolvedDate" class="form-control datepicker">
+            </div>
+    </div>
+    <button type="submit" class="btn btn-primary" >Add</button>
+  </form>
+  {{severities}}

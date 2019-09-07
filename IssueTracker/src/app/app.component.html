@@ -5,10 +5,10 @@
   <!-- Links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="#">Link 1</a>
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['viewissues']">View Issues</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link 2</a>
+      <a class="nav-link" routerLinkActive="active" [routerLink]="['/addissue']">Add issue</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">Link 3</a>
@@ -17,9 +17,6 @@
 </nav>
 
 <div class="container-fluid">
-  <app-issues></app-issues>
+  <router-outlet></router-outlet>
 </div>
-<div class='container'>
-    <router-outlet></router-outlet>
-  </div>
 

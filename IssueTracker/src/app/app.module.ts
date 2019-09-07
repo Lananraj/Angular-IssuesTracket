@@ -21,10 +21,11 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path : 'addissue',component: AddIssueComponent }
+      {path : 'addissue',component: AddIssueComponent },
+      {path : 'viewissues',component: IssuesComponent }
     ])
   ],
-  providers: [],
+  providers: [IssuesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

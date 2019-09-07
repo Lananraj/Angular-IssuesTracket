@@ -13,7 +13,7 @@ export class IssuesComponent implements OnInit {
  issues : IIssues[] = [];
  errorMessage: any;
 
-  severityTypes : any = [
+   private severityTypes : any = [
     { id : '01Minor' , name : 'Minor' },
     { id : '02Major' , name : 'Major' },
     { id : '03Critical' , name : 'Critical' }
@@ -24,6 +24,10 @@ export class IssuesComponent implements OnInit {
     { id : '02' , name : 'In-Progress' },
     { id : '03' , name : 'Closed' }
   ]
+
+  get SeverityTypes(){
+    return this.severityTypes;
+  }
 
   constructor(private issueService : IssueService) {
    
