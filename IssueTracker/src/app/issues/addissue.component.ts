@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IssuesComponent } from './issues.component';
+import { IssueService } from './issue.service';
+import { IIssues } from './issues';
 
 
 @Component({
@@ -20,4 +22,28 @@ export class AddIssueComponent {
         { id : '02' , name : 'In-Progress' },
         { id : '03' , name : 'Closed' }
       ]
+      issu : IIssues[];
+      constructor(private issueService : IssueService){
+
+      }
+      ngOnInit(){
+          this.getIssues();
+      }
+
+      getIssues(){
+          return this.issueService.getIssues().subscribe(
+              result => this.issu,
+              error => console.log("error ",error)
+              )
+      }
+
+      addIssue(){
+            this.issueService.addIssue().subscribe
+            (
+                (data:any) => this.getIssues(),
+                error => console.log("Error while adding an issue", error)
+                );
+      }
+
+
 }

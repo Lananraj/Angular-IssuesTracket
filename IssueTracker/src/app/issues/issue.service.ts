@@ -1,16 +1,21 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { IIssues } from './issues';
+import { Injectable } from '@angular/core';
 
 
 @Injectable({
     providedIn : 'root'
 })
 export class IssueService{
-    private issuesUrl = 'api/issues-data/issues.json'; 
+    private issuesUrl = ' http://localhost:4200/api/issues-data/issues.json'; 
    
+    private httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+  };
 
     constructor(private http:HttpClient) {}   
 
@@ -23,6 +28,22 @@ export class IssueService{
         );
         
     }
+
+    addIssue():Observable<IIssues>{
+      console.log('Inside addIssue');
+      var findU = JSON.stringify( {
+        "issueId" : "INC000112",
+        "description" : "Forgot password error message",
+        "severity" : "01Minor",
+        "status" : "01",
+        "creationDate" : "2019-08-11",
+        "resolvedDate" : "2019-09-11"
+        })
+
+
+      return this.http.post<IIssues>(this.issuesUrl,findU,this.httpOptions);
+    }
+
     private handleError(err: HttpErrorResponse) {
         // in a real world app, we may send the server to some remote logging infrastructure
         // instead of just logging it to the console

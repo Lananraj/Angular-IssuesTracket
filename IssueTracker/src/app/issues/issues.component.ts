@@ -25,10 +25,6 @@ export class IssuesComponent implements OnInit {
     { id : '03' , name : 'Closed' }
   ]
 
-  get SeverityTypes(){
-    return this.severityTypes;
-  }
-
   constructor(private issueService : IssueService) {
    
    }
