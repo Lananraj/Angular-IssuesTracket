@@ -22,7 +22,14 @@ export class AddIssueComponent {
         { id : '02' , name : 'In-Progress' },
         { id : '03' , name : 'Closed' }
       ]
-      issu : IIssues[];
+      issu : IIssues ={
+        "issueId" : "INC000111",
+        "description" : "Checkout page error on Non program site",
+        "severity" : "02Major",
+        "status" : "03",
+        "creationDate" : "2019-08-11",
+        "resolvedDate" : "2019-09-11"
+        }
       constructor(private issueService : IssueService){
 
       }
@@ -32,7 +39,7 @@ export class AddIssueComponent {
 
       getIssues(){
           return this.issueService.getIssues().subscribe(
-              result => this.issu,
+              result => console.log('inside getIssues ',result),
               error => console.log("error ",error)
               )
       }
@@ -40,7 +47,7 @@ export class AddIssueComponent {
       addIssue(){
             this.issueService.addIssue().subscribe
             (
-                (data:any) => this.getIssues(),
+                output => console.log("addIssue ",output),
                 error => console.log("Error while adding an issue", error)
                 );
       }

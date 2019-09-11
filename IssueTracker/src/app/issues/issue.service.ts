@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
     providedIn : 'root'
 })
 export class IssueService{
-    private issuesUrl = ' http://localhost:4200/api/issues-data/issues.json'; 
+    private issuesUrl = 'http://localhost:4200/api/issues-data/issues.json'; 
    
     private httpOptions = {
       headers: new HttpHeaders({
@@ -31,17 +31,15 @@ export class IssueService{
 
     addIssue():Observable<IIssues>{
       console.log('Inside addIssue');
-      var findU = JSON.stringify( {
+      var findU =  {
         "issueId" : "INC000112",
-        "description" : "Forgot password error message",
+        "description" : "Forgsdfsdfsdfot password error message",
         "severity" : "01Minor",
         "status" : "01",
         "creationDate" : "2019-08-11",
         "resolvedDate" : "2019-09-11"
-        })
-
-
-      return this.http.post<IIssues>(this.issuesUrl,findU,this.httpOptions);
+        }
+      return this.http.post<any>("http://httpbin.org/post",findU,this.httpOptions);
     }
 
     private handleError(err: HttpErrorResponse) {

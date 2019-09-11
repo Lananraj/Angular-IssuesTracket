@@ -1,37 +1,45 @@
-<form>
-        <div class="form-row">
-    <div class="form-group col-md-12">
-        <label for="exampleFormControlTextarea1">Issue Description</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+<div class="container">
+<form #form="ngForm" ngNativeValidate>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="exampleFormControlTextarea1">Issue Description</label>
+            <textarea class="form-control" name="inputDescription" rows="6" #testInputDesc="ngModel" [(ngModel)]="issu.description" required></textarea>
+        </div>
+        <div *ngIf="testInputDesc.invalid && (testInputDesc.touched || testInputDesc.touched)" class="alert alert-danger">
+             <div *ngIf="testInputDesc.errors.required">
+                Description is required
+            </div> 
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
-                    <label for="inputState">Severity Type</label>
-                    <select id="inputState" class="form-control">
-                            <option *ngFor="let stypes of severityTypes" [value]="stypes.id">{{stypes.name}}</option>
-                    </select>
+            <label for="inputSeverity">Severity Type</label>
+            <select name="inputSeverity" class="form-control" ngModel>
+                <option *ngFor="let stypes of severityTypes" [value]="stypes.id">{{stypes.name}}</option>
+            </select>
         </div>
     </div>
     <div class="form-row">
-            <div class="form-group col-md-12">
-                        <label for="inputState">Status</label>
-                        <select id="inputState" class="form-control">
-                            <option *ngFor="let status of issueStatus" [value]="status.id">{{status.name}}</option>
-                        </select>
-            </div>
+        <div class="form-group col-md-12">
+            <label for="inputStatus">Status</label>
+            <select name="inputStatus" class="form-control" ngModel>
+                <option *ngFor="let status of issueStatus" [value]="status.id">{{status.name}}</option>
+            </select>
         </div>
+    </div>
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="creationDate">Creation Date</label>
-            <input type="date" id="creationDate" class="form-control datepicker">
+            <input type="date" name="creationDate" class="form-control datepicker" ngModel>
         </div>
     </div>
     <div class="form-row">
-            <div class="form-group col-md-12">
-                <label for="resolvedDate">Resolved Date</label>
-                <input type="date" id="resolvedDate" class="form-control datepicker">
-            </div>
+        <div class="form-group col-md-12">
+            <label for="resolvedDate">Resolved Date</label>
+            <input type="date" name="resolvedDate" class="form-control datepicker" ngModel>
+        </div>
     </div>
-    <button type="submit" (click)="addIssue()" class="btn btn-primary" >Add</button>
-  </form>
+    <button type="submit" (click)="addIssue()" class="btn btn-primary" name="submitAddIssueBtn">Add</button>
+</form>
+</div>
+{{form.value | json}}
